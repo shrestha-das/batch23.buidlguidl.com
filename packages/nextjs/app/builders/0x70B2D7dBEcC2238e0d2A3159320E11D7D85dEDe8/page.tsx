@@ -1,22 +1,23 @@
-"use client";
-
+import Image from "next/image";
 import { Address } from "@scaffold-ui/components";
 import type { NextPage } from "next";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 
-const BuilderPage: NextPage = () => {
+const NikhilRaikwarPage: NextPage = () => {
   return (
     <div className="flex items-center flex-col flex-grow pt-10 px-4">
-      <div className="max-w-4xl w-full bg-base-100 rounded-3xl shadow-xl overflow-hidden border border-base-300 transform transition-all hover:shadow-2xl">
+      <div className="max-w-4xl w-full bg-base-100 rounded-3xl shadow-xl overflow-hidden border border-base-300">
         {/* Banner with modern gradient */}
         <div className="h-48 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 relative">
           <div className="absolute -bottom-16 left-8 p-1 bg-base-100 rounded-full shadow-lg">
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-base-100 bg-base-300">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="https://unavatar.io/github/NikhilRaikwar"
                 alt="Nikhil Raikwar"
+                width={128}
+                height={128}
                 className="object-cover w-full h-full"
+                unoptimized
               />
             </div>
           </div>
@@ -124,4 +125,4 @@ const BuilderPage: NextPage = () => {
   );
 };
 
-export default BuilderPage;
+export default NikhilRaikwarPage;
