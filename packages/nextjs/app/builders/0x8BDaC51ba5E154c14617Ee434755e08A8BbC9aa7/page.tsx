@@ -69,7 +69,6 @@ const PageOfShrestha: NextPage = () => {
           </ul>
         </div>
 
-        <br></br>
         <hr className="dark:border-slate-900"></hr>
 
         <div className="mt-6 flex gap-4 justify-center items-center">
