@@ -1,4 +1,3 @@
-version: '3'
 services:
   graph-node:
     image: graphprotocol/graph-node
@@ -11,6 +10,8 @@ services:
     depends_on:
       - ipfs
       - postgres
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       postgres_host: postgres
       postgres_user: graph-node

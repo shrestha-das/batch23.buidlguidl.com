@@ -1,47 +1,6 @@
 import Link from "next/link";
 import { Address } from "@scaffold-ui/components";
-
-type Builder = {
-  id: string;
-  address: string;
-  checkInCount: number;
-  firstCheckIn: number;
-  lastCheckIn: number;
-};
-
-const SUBGRAPH_URL = "https://api.studio.thegraph.com/query/1722630/batch-23-buidlguidl/version/latest";
-
-const GET_BUILDERS_QUERY = `
-  query GetBuilders {
-    builders(orderBy: lastCheckIn, orderDirection: desc) {
-      id
-      address
-      checkInCount
-      firstCheckIn
-      lastCheckIn
-    }
-  }
-`;
-
-async function getBuilders(): Promise<Builder[]> {
-  const res = await fetch(SUBGRAPH_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      query: GET_BUILDERS_QUERY,
-    }),
-    next: { revalidate: 60 }, // Revalidate every 60 seconds
-  });
-
-  if (!res.ok) {
-    throw new Error(`Failed to fetch builders: ${res.statusText}`);
-  }
-
-  const { data } = await res.json();
-  return data?.builders || [];
-}
+import { Builder, getBuilders } from "~~/services/graph/client";
 
 export default async function BuildersPage() {
   let builders: Builder[] = [];
