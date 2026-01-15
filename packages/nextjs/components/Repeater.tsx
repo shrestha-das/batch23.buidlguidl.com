@@ -42,16 +42,7 @@ const Repeater: React.FC<RepeaterProps> = ({ containerClasses = "", containerSty
   return (
     <div ref={containerRef} className={containerClasses} style={containerStyle}>
       {/* Hidden child for measuring */}
-      <div
-        style={{
-          position: "absolute",
-          visibility: "hidden",
-          pointerEvents: "none",
-          height: "auto",
-          overflow: "visible",
-          whiteSpace: "nowrap",
-        }}
-      >
+      <div className="absolute hidden pointer-events-none h-auto overflow-visible whitespace-nowrap">
         <div ref={childRef}>{children}</div>
       </div>
 
