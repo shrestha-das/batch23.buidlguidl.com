@@ -50,10 +50,11 @@
     "ipfs": "yarn workspace @se-2/nextjs ipfs",
     "vercel:login": "yarn workspace @se-2/nextjs vercel:login",
     "verify": "yarn hardhat:verify",
-    "subgraph:run-node": "cd packages/subgraph && docker compose up",
-    "subgraph:stop-node": "cd packages/subgraph && docker compose down",
     "subgraph:clean-node": "cd packages/subgraph && rimraf data",
+    "subgraph:run-node": "cd packages/subgraph && docker compose up",
+    "subgraph:local-create": "yarn workspace @se-2/subgraph local-create",
     "subgraph:local-ship": "yarn workspace @se-2/subgraph local-ship",
+    "subgraph:stop-node": "cd packages/subgraph && docker compose down",
     "subgraph:deploy": "yarn workspace @se-2/subgraph deploy",
     "graphclient:build": "yarn workspace @se-2/nextjs graphclient:build"
   },

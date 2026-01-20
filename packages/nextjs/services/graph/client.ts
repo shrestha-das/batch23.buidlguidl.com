@@ -41,3 +41,44 @@ export async function getBuilders(): Promise<Builder[]> {
   const { data } = await res.json();
   return data?.builders || [];
 }
+
+const GET_BUILDER_AND_CHECKIN_QUERY = `
+query GetBuilders  {
+  builders(orderBy: lastCheckIn, orderDirection: desc) {
+    address
+    checkIns(first:1) {
+      transactionHash
+      checkInContract
+    }
+  }
+}`;
+
+export type BuilderWithCheckIn = {
+  address: string;
+  checkIns: CheckIn[];
+};
+
+export type CheckIn = {
+  transactionHash: string;
+  checkInContract: string;
+};
+
+export async function getBuildersAndCheckIns(): Promise<BuilderWithCheckIn[]> {
+  const res = await fetch(SUBGRAPH_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: GET_BUILDER_AND_CHECKIN_QUERY,
+    }),
+    next: { revalidate: 60 }, // Revalidate every 60 seconds
+  });
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch builders with checkins: ${res.statusText}`);
+  }
+
+  const { data } = await res.json();
+  return data?.builders || [];
+}
